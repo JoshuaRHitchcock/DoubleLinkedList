@@ -1,11 +1,15 @@
+//import java.util.LinkedList;
+
+/*
+* Name: Joshua Richard Hitchcock
+* Course & Section #: CSCI146 - Intro to Algorithmic Design II
+* Date: 2/2/2022
+* Program Function\Purpose: HW3
+*/
+
 /*
  * Written by JJ Shepherd
-*
-* Until test for homework 4
  */
- 
- 
-
 public class DoubleLinkedListTester {
 	public static final double[] TEST_VALS_1 = {0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0};
 	public static final double[] TEST_VALS_2 = {1.0,3.0,4.0,5.0,6.0,7.0,8.0};
@@ -71,17 +75,156 @@ public class DoubleLinkedListTester {
 		System.out.println(DEC+str+"\n"+DEC);
 	}
 }
+//
+//
+//
+//
 
 
+class DoubleDoubleLL {
+	
+	Node head;
+	Node tail;
+	
+	    //A node class for doubly linked list
+	    class Node{  
+	        double item;  
+	        Node prev;  
+	        Node next;  
+	   
+	        //Constructor for node
+	        public Node(double item2) {  
+	            this.item = item2; 
+	            this.prev = null;
+	            this.next = null;
+	        }  
+	    }  
+	     
+		public void add(double item) {
+			
+		//Create a new node  
+        Node newNode = new Node(item);  
+   
+        //if list is empty, head and tail points to newNode  
+        if(head == null) {  
+            head = tail = newNode;  
+             
+            head.prev = null;   
+            tail.next = null;  
+        }  
+        else {  
+            //add newNode to the end of list. tail.next set to newNode  
+            tail.next = newNode;  
+            //newNode set to prev set to tail  
+            newNode.prev = tail;  
+            //newNode becomes new tail  
+            tail = newNode;  
+            //tail's next point to null  
+            tail.next = null;  
+            
+           // System.out.println(newNode.item);
+           //I used this to see if I added things correctly
+        }  
+        
+    }  
+		
+
+		public void gotoEnd() {
+			// TODO Auto-generated method stub
+			
+		}
 
 
+		public boolean contains(double searchData)
+		    {
+		        // Get first node
+		        Node head = this.head;
+		        // Get last node
+		        Node tail = this.tail;
+		        while (head != null && tail != null)
+		        {
+		            if (head.item == searchData || tail.item == searchData)
+		            {
+		                
+		                return true;
+		            }
+		            if (head == tail || head.next == tail)
+		            {
+		                return false;
+		            }
+		            // To the right node
+		            head = head.next;
+		            // To the left node
+		            tail = tail.prev;
+		        }
+		        
+		        return false;
+				}
+	
+	
+		public void reset() {
+			
+//This method should return us to the front of the list		
+//My attempt to do this is to move to the head of the list
+			
+			Node head = this.head;
+			
+			}
+
+		public void removeCurrent() {
+
+/*This method should remove where ever we are in the list				
+* My attempt at this is to move around the node I want to remove
+*/			
+			if (head != null) {
+				head.next = tail.prev;
+				tail.prev = head.next;		
+			}	
+		}
+	
+		
+		public void gotoNext() {
+			
+/*This method should go forward one element in the list.
+* I am trying to move up one node. My attempt to 
+* do this is to move the node to the tail and head of the next node.
+*/
+			Node prev = tail.next;
+			Node next = head.next;
+			}
+		
+		public boolean hasMore() {
+			
+			while(tail.next != null) {
+		      return true;
+			}
+			return false;
+		}
+	
+	
+	public void setCurrent(int i) {
+			// TODO Auto-generated method stub
+			
+	}
+
+	
 
 
+	
+	public int getCurrent() {
+//		
+//I have not completed this yet but here is some code		
+//	to get this thing going and some test numbers.	
+//	
+		return(5);
+	}
+	
+	
 
+	public void print() {
 
-
-
-
+}
+}
 
 //
 // Homework 
