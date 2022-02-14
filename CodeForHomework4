@@ -1,0 +1,200 @@
+/*
+ * Written by JJ Shepherd
+*
+* Until test for homework 4
+ */
+ 
+ 
+
+public class DoubleLinkedListTester {
+	public static final double[] TEST_VALS_1 = {0.0,1.0,2.0,3.0,4.0,5.0,6.0,7.0,8.0,9.0};
+	public static final double[] TEST_VALS_2 = {1.0,3.0,4.0,5.0,6.0,7.0,8.0};
+	public static final double[] TEST_VALS_3 = {1.0,3.0,-4.0,5.0,-6.0,7.0,-8.0};
+	
+	public static final String DEC = "------------------------------------------------------\n";
+	public static void main(String[] args) {
+		printDecorated("Double Double Linked List Tester");
+		DoubleDoubleLL ddList = new DoubleDoubleLL();
+
+		System.out.println("SUCCESS: "+insertAndContainsTest(ddList)+"\n");
+		System.out.println("SUCCESS: "+deleteTest(ddList)+"\n");
+		System.out.println("SUCCESS: "+modifyingValuesTest(ddList)+"\n");
+		
+		printDecorated("Printing the list");
+		ddList.print();
+		
+		ddList.gotoEnd();
+		System.out.println("Print last element: "+ddList.getCurrent());
+	}
+	
+	public static boolean insertAndContainsTest(DoubleDoubleLL ddList)
+	{
+		printDecorated("Inserting and Contains Test");
+		for(int i=0;i<TEST_VALS_1.length;i++)
+			ddList.add(TEST_VALS_1[i]);
+		return valuesMatch(ddList,TEST_VALS_1);
+	}
+	public static boolean deleteTest(DoubleDoubleLL ddList)
+	{
+		printDecorated("Removing Test\nRemoving first item, third item, and last item");
+		ddList.reset();
+		ddList.removeCurrent();
+		
+		ddList.gotoNext();
+		ddList.removeCurrent();
+
+		ddList.gotoEnd();
+		ddList.removeCurrent();
+		return valuesMatch(ddList,TEST_VALS_2);
+	}
+	public static boolean modifyingValuesTest(DoubleDoubleLL ddList)
+	{
+		printDecorated("Modified Values Test\nChanging all even values to negative values");
+		ddList.reset();
+		while(ddList.hasMore())
+		{
+			if(ddList.getCurrent() % 2 == 0)
+				ddList.setCurrent(-ddList.getCurrent());
+			ddList.gotoNext();
+		}
+		return valuesMatch(ddList,TEST_VALS_3);
+	}
+	public static boolean valuesMatch(DoubleDoubleLL ddList, double[] testVals)
+	{
+		for(int i=0;i<testVals.length;i++)
+			if(!ddList.contains(testVals[i]))
+				return false;
+		return true;
+	}
+	public static void printDecorated(String str)
+	{
+		System.out.println(DEC+str+"\n"+DEC);
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+//
+// Homework 
+// constraints
+//
+
+
+/*
+Functionality.
+
+No Syntax Errors.
+Code that cannot be compiled due to syntax errors is nonfunctional code and will receive no points for this entire section.
+
+Set up the Project.
+
+First LOAD file DoubleLinkedListTester.java and include it in your project.
+Do not modify the driver.
+
+Create a class and name it, exactly, DoubleDoubleLL.
+Create Doubly Linked List Node.
+
+An internal class must be used to represent a Node in the linked list.
+This node must contain both data and two links.
+
+One link must point forward to the next item in the list
+The other link must point backwards to the previous item in the list. All the above must apply for full credit.
+
+Create methods gotoNext, gotoPrev, reset, gotoEnd, and hasMore.
+
+The method “gotoNext” must move the current reference forward by one
+node. If the current reference is null, then the method does nothing.
+
+The method “gotoPrev” must move the current reference backwards by
+one node. If the current reference is null, then the method does nothing.
+
+The method “reset”, must move the current reference to the head
+reference.
+
+The method “gotoEnd”, must move the current reference to the last node
+in the list.
+
+The method “hasMore”, must return true if the current reference is not null
+or false if it is.
+
+All methods must have the public scope and their identifiers must match
+exactly what is defined above.
+
+Create methods getCurrent and setCurrent.
+
+The method “getCurrent” must return the data at the current reference. If
+the current reference is null, then it must return null.
+
+The method “setCurrent” must modify the data at the current reference
+given new data. If the current reference is null, then it must do nothing.
+All methods must have the public scope and their identifiers must match
+exactly what is defined above.
+
+Create methods add and addAfterCurrent.
+
+The method “add”, must create a new node with data provided via a
+parameter and add it to the end of the list. If the head reference is null,
+then it adds the new node to the start of the list.
+
+The method “addAfterCurrent”, must create a new node with the data
+provided via a parameter and add it after the current reference. If the
+current reference is null, then do not add the data to the list. See images
+below for the concept.
+
+All methods must have the public scope and their identifiers must match
+exactly what is defined above.
+
+After either “add” or “addAfterCurrent” the integrity of the list must be
+maintained, and all links and references need to be properly set.
+ All the above must apply for full credit.
+
+Create methods remove and removeCurrent.
+
+The method “remove”, must search for data provided via a parameter, and
+remove the node if it is found.
+
+The method “removeCurrent”, must remove the node that is at the current
+reference. If the current reference is null, then this method does nothing.
+See images below for the concept.
+
+All methods must have the public scope and their identifiers must match
+exactly what is defined above.
+
+After either “remove” or “removeCurrent” the integrity of the list must be
+maintained, and all links and references need to be properly set.
+All the above must apply for full credit.
+
+Create the method print.
+
+This method must print all the data in the linked list to the console.
+The method must have the public scope and their identifiers must match
+exactly what is defined above.
+All the above must apply for full credit.
+
+Create the method contains.
+
+This method returns true only if data provided via a parameter is contained
+in the list, and otherwise it returns false.
+The method must have the public scope and their identifiers must match
+exactly what is defined above.
+
+All the above must apply for full credit.
+Coding Style.
+Code functionality organized within multiple methods other than the main
+method, and methods organized within multiple classes where appropriate.
+Readable Code
+Meaningful identifiers for data and methods.
+Proper indentation that clearly identifies statements within the body of a class, a method, a branching statement, a loop statement, etc. All the above must apply for full credit.
+Comments.
+Your name in the file.
+At least 5 meaningful comments in addition to your name. These must describe the function of the code it is near.
+*/
