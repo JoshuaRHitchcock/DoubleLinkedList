@@ -1,10 +1,15 @@
-//import java.util.LinkedList;
+// import java.util.LinkedList;
+// This import isn't being used but I am keeping it here 
+// So I can potentally refernce it as an option in later 
+// projects for the class.
+
+
 
 /*
 * Name: Joshua Richard Hitchcock
 * Course & Section #: CSCI146 - Intro to Algorithmic Design II
-* Date: 2/2/2022
-* Program Function\Purpose: HW3
+* Date: 2/15/2022
+* Program Function\Purpose: HW4
 */
 
 /*
@@ -75,6 +80,8 @@ public class DoubleLinkedListTester {
 		System.out.println(DEC+str+"\n"+DEC);
 	}
 }
+
+
 //
 //
 //
@@ -102,7 +109,7 @@ class DoubleDoubleLL {
 	     
 		public void add(double item) {
 			
-		//Create a new node  
+	//Create a new node  
         Node newNode = new Node(item);  
    
         //if list is empty, head and tail points to newNode  
@@ -113,12 +120,16 @@ class DoubleDoubleLL {
             tail.next = null;  
         }  
         else {  
+	
             //add newNode to the end of list. tail.next set to newNode  
             tail.next = newNode;  
+	    
             //newNode set to prev set to tail  
             newNode.prev = tail;  
+	    
             //newNode becomes new tail  
             tail = newNode;  
+	    
             //tail's next point to null  
             tail.next = null;  
             
