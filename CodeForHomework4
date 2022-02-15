@@ -95,12 +95,14 @@ class DoubleDoubleLL {
 	
 	    //A node class for doubly linked list
 	    class Node{  
+	    
 	        double item;  
 	        Node prev;  
 	        Node next;  
 	   
 	        //Constructor for node
 	        public Node(double item2) {  
+		
 	            this.item = item2; 
 	            this.prev = null;
 	            this.next = null;
@@ -150,8 +152,10 @@ class DoubleDoubleLL {
 		    {
 		        // Get first node
 		        Node head = this.head;
+			
 		        // Get last node
 		        Node tail = this.tail;
+			
 		        while (head != null && tail != null)
 		        {
 		            if (head.item == searchData || tail.item == searchData)
@@ -165,6 +169,7 @@ class DoubleDoubleLL {
 		            }
 		            // To the right node
 		            head = head.next;
+			    
 		            // To the left node
 		            tail = tail.prev;
 		        }
@@ -175,8 +180,8 @@ class DoubleDoubleLL {
 	
 		public void reset() {
 			
-//This method should return us to the front of the list		
-//My attempt to do this is to move to the head of the list
+// This method should return us to the front of the list		
+// My attempt to do this is to move to the head of the list
 			
 			Node head = this.head;
 			
@@ -184,9 +189,9 @@ class DoubleDoubleLL {
 
 		public void removeCurrent() {
 
-/*This method should remove where ever we are in the list				
-* My attempt at this is to move around the node I want to remove
-*/			
+// This method should remove where ever we are in the list				
+// My attempt at this is to move around the node I want to remove
+//			
 			if (head != null) {
 				head.next = tail.prev;
 				tail.prev = head.next;		
@@ -196,12 +201,13 @@ class DoubleDoubleLL {
 		
 		public void gotoNext() {
 			
-/*This method should go forward one element in the list.
-* I am trying to move up one node. My attempt to 
-* do this is to move the node to the tail and head of the next node.
-*/
+// This method should go forward one element in the list.
+// I am trying to move up one node. My attempt to 
+// do this is to move the node to the tail and head of the next node.
+//
 			Node prev = tail.next;
 			Node next = head.next;
+			
 			}
 		
 		public boolean hasMore() {
@@ -214,7 +220,7 @@ class DoubleDoubleLL {
 	
 	
 	public void setCurrent(int i) {
-			// TODO Auto-generated method stub
+	// TODO Auto-generated method stub
 			
 	}
 
@@ -224,8 +230,8 @@ class DoubleDoubleLL {
 	
 	public int getCurrent() {
 //		
-//I have not completed this yet but here is some code		
-//	to get this thing going and some test numbers.	
+// I have not completed this yet but here is some code		
+// to get this thing going and some test numbers.	
 //	
 		return(5);
 	}
