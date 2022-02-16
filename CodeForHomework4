@@ -1,9 +1,4 @@
-// import java.util.LinkedList;
-// This import isn't being used but I am keeping it here 
-// So I can potentally refernce it as an option in later 
-// projects for the class.
-
-
+//import java.util.LinkedList;
 
 /*
 * Name: Joshua Richard Hitchcock
@@ -81,7 +76,6 @@ public class DoubleLinkedListTester {
 	}
 }
 
-
 //
 //
 //
@@ -92,17 +86,16 @@ class DoubleDoubleLL {
 	
 	Node head;
 	Node tail;
+	Node Current;
 	
 	    //A node class for doubly linked list
 	    class Node{  
-	    
 	        double item;  
 	        Node prev;  
 	        Node next;  
 	   
 	        //Constructor for node
 	        public Node(double item2) {  
-		
 	            this.item = item2; 
 	            this.prev = null;
 	            this.next = null;
@@ -111,7 +104,7 @@ class DoubleDoubleLL {
 	     
 		public void add(double item) {
 			
-	//Create a new node  
+		//Create a new node  
         Node newNode = new Node(item);  
    
         //if list is empty, head and tail points to newNode  
@@ -122,40 +115,39 @@ class DoubleDoubleLL {
             tail.next = null;  
         }  
         else {  
-	
             //add newNode to the end of list. tail.next set to newNode  
             tail.next = newNode;  
-	    
             //newNode set to prev set to tail  
             newNode.prev = tail;  
-	    
             //newNode becomes new tail  
             tail = newNode;  
-	    
             //tail's next point to null  
             tail.next = null;  
-            
-           // System.out.println(newNode.item);
-           //I used this to see if I added things correctly
         }  
         
     }  
 		
-
 		public void gotoEnd() {
-			// TODO Auto-generated method stub
 			
-		}
+			while( head.next != null){
 
+				// This line will help me see where I am at
+				// and if I am moving at all
+				System.out.println("I am at the node with data " + head.item);
+				
+						
+				head = head.next;
+		}
+			System.out.print("I am at the end which is " + head.item);
+			System.out.println("");
+		}
 
 		public boolean contains(double searchData)
 		    {
 		        // Get first node
 		        Node head = this.head;
-			
 		        // Get last node
 		        Node tail = this.tail;
-			
 		        while (head != null && tail != null)
 		        {
 		            if (head.item == searchData || tail.item == searchData)
@@ -169,7 +161,6 @@ class DoubleDoubleLL {
 		            }
 		            // To the right node
 		            head = head.next;
-			    
 		            // To the left node
 		            tail = tail.prev;
 		        }
@@ -180,34 +171,58 @@ class DoubleDoubleLL {
 	
 		public void reset() {
 			
-// This method should return us to the front of the list		
-// My attempt to do this is to move to the head of the list
+			// This method should return us to the front of the list                    
+			// My attempt to do this is to move to the head of the list
+			                                                
+			while( head.prev != null){
+
+			// This line will help me see where I am at
+			// and if I am moving at all
+			System.out.println("I am at the node with data " + head.item);
 			
-			Node head = this.head;
-			
+					
+			head = head.next;
+
+			}
+
+			// Print statement for the front of the node
+			System.out.print("I am at the front which is " + head.item);
+			System.out.println("");
+				
 			}
 
 		public void removeCurrent() {
 
-// This method should remove where ever we are in the list				
-// My attempt at this is to move around the node I want to remove
-//			
-			if (head != null) {
-				head.next = tail.prev;
-				tail.prev = head.next;		
-			}	
+/*This method should remove where ever we are in the list				
+* My attempt at this is to move around the node I want to remove
+*/			
+			if(head.prev == null) {
+				return;
+			}
+			
+			
+	//Holding the data at the current node
+	Node CurrentNode = head;
+	
+	head = head.prev;
+	head.prev = CurrentNode.next;
+	
+	
+	
+	System.out.println("This is my Current " + CurrentNode.item);
+
+	
+return;
 		}
 	
 		
 		public void gotoNext() {
 			
-// This method should go forward one element in the list.
-// I am trying to move up one node. My attempt to 
-// do this is to move the node to the tail and head of the next node.
-//
-			Node prev = tail.next;
-			Node next = head.next;
-			
+/*This method should go forward one element in the list.
+* I am trying to move up one node. My attempt to 
+* do this is to move the node to the tail and head of the next node.
+*/
+			head = head.next;
 			}
 		
 		public boolean hasMore() {
@@ -220,141 +235,34 @@ class DoubleDoubleLL {
 	
 	
 	public void setCurrent(int i) {
-	// TODO Auto-generated method stub
+			// TODO Auto-generated method stub
 			
 	}
-
-	
-
-
 	
 	public int getCurrent() {
-//		
-// I have not completed this yet but here is some code		
-// to get this thing going and some test numbers.	
-//	
-		return(5);
+
+		  double data = head.item;
+	      // convert into int
+		  // I am sure there is a better
+		  // way to do this
+	      int CurrentNodeData = (int)data;
+		
+		return(CurrentNodeData);
 	}
 	
-	
-
 	public void print() {
-
+		
+		while( head.prev != null){
+					
+			head = head.prev;
+		}
+		
+		
+		while(head.next != null) {
+		     System.out.println(head.item);
+		     head = head.next;
+		}
+		
+		return;
 }
 }
-
-//
-// Homework 
-// constraints
-//
-
-
-/*
-Functionality.
-
-No Syntax Errors.
-Code that cannot be compiled due to syntax errors is nonfunctional code and will receive no points for this entire section.
-
-Set up the Project.
-
-First LOAD file DoubleLinkedListTester.java and include it in your project.
-Do not modify the driver.
-
-Create a class and name it, exactly, DoubleDoubleLL.
-Create Doubly Linked List Node.
-
-An internal class must be used to represent a Node in the linked list.
-This node must contain both data and two links.
-
-One link must point forward to the next item in the list
-The other link must point backwards to the previous item in the list. All the above must apply for full credit.
-
-Create methods gotoNext, gotoPrev, reset, gotoEnd, and hasMore.
-
-The method “gotoNext” must move the current reference forward by one
-node. If the current reference is null, then the method does nothing.
-
-The method “gotoPrev” must move the current reference backwards by
-one node. If the current reference is null, then the method does nothing.
-
-The method “reset”, must move the current reference to the head
-reference.
-
-The method “gotoEnd”, must move the current reference to the last node
-in the list.
-
-The method “hasMore”, must return true if the current reference is not null
-or false if it is.
-
-All methods must have the public scope and their identifiers must match
-exactly what is defined above.
-
-Create methods getCurrent and setCurrent.
-
-The method “getCurrent” must return the data at the current reference. If
-the current reference is null, then it must return null.
-
-The method “setCurrent” must modify the data at the current reference
-given new data. If the current reference is null, then it must do nothing.
-All methods must have the public scope and their identifiers must match
-exactly what is defined above.
-
-Create methods add and addAfterCurrent.
-
-The method “add”, must create a new node with data provided via a
-parameter and add it to the end of the list. If the head reference is null,
-then it adds the new node to the start of the list.
-
-The method “addAfterCurrent”, must create a new node with the data
-provided via a parameter and add it after the current reference. If the
-current reference is null, then do not add the data to the list. See images
-below for the concept.
-
-All methods must have the public scope and their identifiers must match
-exactly what is defined above.
-
-After either “add” or “addAfterCurrent” the integrity of the list must be
-maintained, and all links and references need to be properly set.
- All the above must apply for full credit.
-
-Create methods remove and removeCurrent.
-
-The method “remove”, must search for data provided via a parameter, and
-remove the node if it is found.
-
-The method “removeCurrent”, must remove the node that is at the current
-reference. If the current reference is null, then this method does nothing.
-See images below for the concept.
-
-All methods must have the public scope and their identifiers must match
-exactly what is defined above.
-
-After either “remove” or “removeCurrent” the integrity of the list must be
-maintained, and all links and references need to be properly set.
-All the above must apply for full credit.
-
-Create the method print.
-
-This method must print all the data in the linked list to the console.
-The method must have the public scope and their identifiers must match
-exactly what is defined above.
-All the above must apply for full credit.
-
-Create the method contains.
-
-This method returns true only if data provided via a parameter is contained
-in the list, and otherwise it returns false.
-The method must have the public scope and their identifiers must match
-exactly what is defined above.
-
-All the above must apply for full credit.
-Coding Style.
-Code functionality organized within multiple methods other than the main
-method, and methods organized within multiple classes where appropriate.
-Readable Code
-Meaningful identifiers for data and methods.
-Proper indentation that clearly identifies statements within the body of a class, a method, a branching statement, a loop statement, etc. All the above must apply for full credit.
-Comments.
-Your name in the file.
-At least 5 meaningful comments in addition to your name. These must describe the function of the code it is near.
-*/
