@@ -78,15 +78,12 @@ public class DoubleLinkedListTester {
 
 //
 //
-//
-//
-
 
 class DoubleDoubleLL {
 	
 	Node head;
 	Node tail;
-	Node Current;
+	//Node Current;
 	
 	    //A node class for doubly linked list
 	    class Node{  
@@ -133,13 +130,14 @@ class DoubleDoubleLL {
 
 				// This line will help me see where I am at
 				// and if I am moving at all
-				System.out.println("I am at the node with data " + head.item);
+				// System.out.println("I am at the node with data " + head.item);
 				
 						
 				head = head.next;
 		}
-			System.out.print("I am at the end which is " + head.item);
-			System.out.println("");
+			// Lines to help me see what was working
+			// System.out.print("I am at the end which is " + head.item);
+			// System.out.println("");
 		}
 
 		public boolean contains(double searchData)
@@ -174,20 +172,17 @@ class DoubleDoubleLL {
 			// This method should return us to the front of the list                    
 			// My attempt to do this is to move to the head of the list
 			                                                
-			while( head.prev != null){
+			while( head.next != null){
 
 			// This line will help me see where I am at
 			// and if I am moving at all
-			System.out.println("I am at the node with data " + head.item);
-			
-					
+			// System.out.println("I am at the node with data " + head.item);	
 			head = head.next;
-
 			}
 
 			// Print statement for the front of the node
-			System.out.print("I am at the front which is " + head.item);
-			System.out.println("");
+			// System.out.print("I am at the front which is " + head.item);
+			// System.out.println("");
 				
 			}
 
@@ -203,13 +198,12 @@ class DoubleDoubleLL {
 			
 	//Holding the data at the current node
 	Node CurrentNode = head;
-	
 	head = head.prev;
 	head.prev = CurrentNode.next;
+	CurrentNode.next = head.prev;
 	
-	
-	
-	System.out.println("This is my Current " + CurrentNode.item);
+	// Used to help me see where I am at
+	// System.out.println("This is my Current " + CurrentNode.item);
 
 	
 return;
@@ -242,7 +236,7 @@ return;
 	public int getCurrent() {
 
 		  double data = head.item;
-	      // convert into int
+	      // Convert into int
 		  // I am sure there is a better
 		  // way to do this
 	      int CurrentNodeData = (int)data;
@@ -252,15 +246,12 @@ return;
 	
 	public void print() {
 		
-		while( head.prev != null){
-					
-			head = head.prev;
-		}
+	    reset();
+		Node Current = head;
 		
-		
-		while(head.next != null) {
-		     System.out.println(head.item);
-		     head = head.next;
+		while(Current != null) {
+		     System.out.println(Current.item);
+		     Current = Current.next;
 		}
 		
 		return;
