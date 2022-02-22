@@ -3,7 +3,7 @@
 /*
 * Name: Joshua Richard Hitchcock
 * Course & Section #: CSCI146 - Intro to Algorithmic Design II
-* Date: 2/21/2022
+* Date: 2/22/2022
 * Program Function\Purpose: HW4
 */
 
@@ -126,8 +126,8 @@ class DoubleDoubleLL {
         
     }  
 		
-		public void gotoEnd() 
-		{
+		public void gotoEnd() {
+			
 		current = tail; 
 		}
 
@@ -195,12 +195,12 @@ return;
 * I am trying to move up one node. My attempt to 
 * do this is to move the node to the tail and head of the next node.
 */
-			head = head.next;
+			current = current.next;
 			}
 		
 		public boolean hasMore() {
 			
-			while(tail.next != null) {
+			while(current != null) {
 		      return true;
 			}
 			return false;
