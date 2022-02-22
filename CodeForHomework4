@@ -3,7 +3,7 @@
 /*
 * Name: Joshua Richard Hitchcock
 * Course & Section #: CSCI146 - Intro to Algorithmic Design II
-* Date: 2/15/2022
+* Date: 2/21/2022
 * Program Function\Purpose: HW4
 */
 
@@ -78,12 +78,14 @@ public class DoubleLinkedListTester {
 
 //
 //
+//
+//
 
 class DoubleDoubleLL {
 	
 	Node head;
 	Node tail;
-	//Node Current;
+	Node current;
 	
 	    //A node class for doubly linked list
 	    class Node{  
@@ -124,21 +126,11 @@ class DoubleDoubleLL {
         
     }  
 		
-		public void gotoEnd() {
-			
-			while( head.next != null){
+		public void gotoEnd() 
+		{
+		current = tail; 
+		}
 
-				// This line will help me see where I am at
-				// and if I am moving at all
-				// System.out.println("I am at the node with data " + head.item);
-				
-						
-				head = head.next;
-		}
-			// Lines to help me see what was working
-			// System.out.print("I am at the end which is " + head.item);
-			// System.out.println("");
-		}
 
 		public boolean contains(double searchData)
 		    {
@@ -167,45 +159,32 @@ class DoubleDoubleLL {
 				}
 	
 	
-		public void reset() {
-			
-			// This method should return us to the front of the list                    
-			// My attempt to do this is to move to the head of the list
-			                                                
-			while( head.next != null){
+		public void reset() 
+		{
+		current = head;
+		}
 
-			// This line will help me see where I am at
-			// and if I am moving at all
-			// System.out.println("I am at the node with data " + head.item);	
-			head = head.next;
-			}
-
-			// Print statement for the front of the node
-			// System.out.print("I am at the front which is " + head.item);
-			// System.out.println("");
-				
-			}
 
 		public void removeCurrent() {
 
 /*This method should remove where ever we are in the list				
 * My attempt at this is to move around the node I want to remove
 */			
-			if(head.prev == null) {
-				return;
-			}
-			
-			
-	//Holding the data at the current node
-	Node CurrentNode = head;
-	head = head.prev;
-	head.prev = CurrentNode.next;
-	CurrentNode.next = head.prev;
-	
-	// Used to help me see where I am at
-	// System.out.println("This is my Current " + CurrentNode.item);
 
+	if (current == tail) {
+		return;
+	}
 	
+	//
+	//Code from the book edited for the homework
+	//double CurrentToBeRemoved = current.item;
+	current.prev = current.next;
+	current.next = current.prev;
+	current = current.next;
+	
+	//Test for removing items
+	//System.out.println("We are removing the item" + CurrentToBeRemoved);
+
 return;
 		}
 	
@@ -228,21 +207,24 @@ return;
 		}
 	
 	
-	public void setCurrent(int i) {
-			// TODO Auto-generated method stub
-			
-	}
-	
-	public int getCurrent() {
+		public void setCurrent(Double d)
+		{
+		if (current == null)
+		{
+		return;
+		}
+		current.item = d;
+		}
 
-		  double data = head.item;
-	      // Convert into int
-		  // I am sure there is a better
-		  // way to do this
-	      int CurrentNodeData = (int)data;
-		
-		return(CurrentNodeData);
+	
+	public Double getCurrent() {
+	if (current == null)
+	{
+	return null;
 	}
+	return current.item;
+	}
+
 	
 	public void print() {
 		
